@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Question ❤️</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;justify-content:center;align-items:center;overflow:hidden;font-family:"Segoe UI",sans-serif;background:linear-gradient(135deg,#ffdde8,#ffd1dc,#fff0f5);color:#5b1830}.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}.heart{position:absolute;bottom:-40px;font-size:24px;animation:float 7s linear infinite;opacity:.7}@keyframes float{0%{transform:translateY(0) rotate(0);opacity:0}15%{opacity:.8}100%{transform:translateY(-110vh) rotate(360deg);opacity:0}}.page{width:min(90%,650px);max-height:90vh;overflow:auto;padding:45px 30px;border-radius:30px;background:rgba(255,255,255,.82);box-shadow:0 20px 60px rgba(139,34,70,.18);text-align:center;display:none;position:relative;z-index:2;animation:appear .6s ease}.page.active{display:flex;flex-direction:column;justify-content:center;align-items:center}@keyframes appear{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}h1{font-size:clamp(2rem,6vw,3.4rem);margin:10px 0 20px}p{font-size:1.15rem;line-height:1.7}button{border:0;border-radius:999px;padding:15px 34px;font-size:1.05rem;font-weight:700;cursor:pointer;transition:transform .2s}.enter,.yes{background:#e83e73;color:white;box-shadow:0 10px 25px rgba(232,62,115,.3)}.question-buttons{width:100%;height:160px;position:relative;margin-top:15px}#noBtn{position:absolute;background:#eee;color:#555;left:50%;transform:translateX(-50%)}#yesBtn{display:none;margin-top:15px}.counter{min-height:24px;color:#a02b52;font-size:.95rem}.letter{max-width:560px;text-align:left;background:#fff7fa;padding:25px;border-radius:20px;border:1px solid #ffd0dc}.signature{text-align:right;font-weight:bold;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+
+<section class="page active" id="page1">
+<div style="font-size:4rem;">💌</div><h1>I have a little question...</h1>
+<p>But first, you have to enter. ❤️</p><button class="enter" onclick="showPage(2)">Enter 💕</button>
+</section>
+
+<section class="page" id="page2">
+<div style="font-size:4rem;">🥺</div><h1>Do you love me?</h1><p>Choose your answer carefully... 👀</p>
+<div class="question-buttons"><button id="noBtn">No 😈</button></div>
+<p class="counter" id="counter"></p><button class="yes" id="yesBtn" onclick="showPage(3)">YES! ❤️</button>
+</section>
+
+<section class="page" id="page3">
+<div style="font-size:3.5rem;">❤️</div><h1>For You, My Love</h1>
+<div class="letter">
+<p>My lovely mouheb</p>
+<p>baby you are not just my boyfriend you are my favourite person and my safe place aandi ken nta nhs rohi mrteha ki nhki maak fi kul shy nta li lget baby w9tli nbde whdi ttswrsh gedesh i appreciate it naarf mmkn tbenlk haja aadia ama ena kont mst7a9atk barsha w farhana li lgetk maaya</p>
+<p>Baby ena nhbk barsha mnhbsh nkhsrk wnb9a whdi w nkhlik whdk baby nou3dk ena mnkhliksh whdk nb9a maak len nmout</p>
+<p>Aarf li dima fema shkun ykhmm fik w kheyf aalik mksh whdk baby i will always support you no matter how small it is i will always love you no matter how hard things go nhbk barsha mouhebi</p>
+<p class="signature">with all love<br><br>Your angry bird</p>
+</div>
+</section>
+
+<script>
+function showPage(n){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById("page"+n).classList.add("active")}
+const noBtn=document.getElementById("noBtn"),yesBtn=document.getElementById("yesBtn"),counter=document.getElementById("counter");let attempts=0;
+function moveNoButton(){attempts++;const area=document.querySelector(".question-buttons");noBtn.style.left=Math.random()*Math.max(0,area.clientWidth-noBtn.offsetWidth)+"px";noBtn.style.top=Math.random()*Math.max(0,area.clientHeight-noBtn.offsetHeight)+"px";noBtn.style.transform="none";counter.textContent=["Nice try 😏","Nope! 😂","You can't catch it!","Are you sure? 🥺","Try again! ❤️"][Math.min(attempts-1,4)];if(attempts>=5)yesBtn.style.display="inline-block"}
+noBtn.addEventListener("mouseenter",moveNoButton);noBtn.addEventListener("touchstart",e=>{e.preventDefault();moveNoButton()});noBtn.addEventListener("click",moveNoButton);
+for(let i=0;i<22;i++){const h=document.createElement("div");h.className="heart";h.textContent=["❤️","💕","💗","💖","💘"][Math.floor(Math.random()*5)];h.style.left=Math.random()*100+"%";h.style.animationDelay=Math.random()*7+"s";h.style.animationDuration=5+Math.random()*5+"s";document.getElementById("hearts").appendChild(h)}
+</script>
+</body>
+</html>
